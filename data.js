@@ -1,6 +1,6 @@
 /* =========================================================
  * 6학년 · Can you come to the ___? 데이터
- * - 초대 문장(Can you come to ~?) : 초급 / 중급 / 고급 각 16개
+ * - 초대 문장(Can you come to ~?) : 초급 / 중급 / 고급 각 18개
  * - 카테고리(인덱스별 공통) : book(교과서 행사) / fun(재미있는 행사)
  * - 승낙 표현 5개 · 거절 표현(Sorry, but I can't. I have a ~.) 10개
  * - 약속 잡기 : Please come to (장소) at (시간).  장소 10 · 시간 10
@@ -9,16 +9,17 @@
  *  ※ 교과서 행사 6개 모두 포함:
  *    my birthday party / taekwondo show / laser show /
  *    book festival / movie festival / cooking class party
- *  ※ 초6이 좋아하는 행사 10개:
+ *  ※ 초6이 좋아하는 행사 12개:
  *    K-pop concert · slime festival · magic show · school festival ·
  *    pizza party · robot show · game party · dance contest ·
- *    Halloween party · sleepover party
+ *    Halloween party · sleepover party · water park party · fireworks festival
+ * - 내 행사 세트(3개) + 내 대답(승낙 1 · 거절 1) 은 app.js 에서 localStorage 에 저장
  * ========================================================= */
 
 /* 카테고리: 같은 인덱스끼리 같은 종류 */
 const SUGGESTION_CATEGORIES = [
   "book","book","book","book","book","book",                  // 0~5   📘 교과서 행사 (6)
-  "fun","fun","fun","fun","fun","fun","fun","fun","fun","fun", // 6~15  🎈 재미있는 행사 (10)
+  "fun","fun","fun","fun","fun","fun","fun","fun","fun","fun","fun","fun", // 6~17 🎈 재미있는 행사 (12)
 ];
 
 /* 이미지(실사) 검색 키워드 - 인덱스별 공통 */
@@ -39,10 +40,12 @@ const IMAGE_PROMPTS = [
   "kids dance contest on a bright stage",
   "kids halloween party with pumpkins and costumes",
   "kids sleepover party with pillows and blankets",
+  "kids having fun at a water park party",
+  "colorful fireworks festival at night",
 ];
 
 /* ===== 초대 문장 (모두 "Can you come to ~?" 로 시작) =====
- * 인덱스: book(0-5) · fun(6-15) */
+ * 인덱스: book(0-5) · fun(6-17) */
 const SUGGESTION_LEVELS = {
   beginner: [
     // 📘 교과서 행사
@@ -63,6 +66,8 @@ const SUGGESTION_LEVELS = {
     { en: "Can you come to the dance contest?",       ko: "댄스 대회에 올 수 있니?",        emoji: "💃" },
     { en: "Can you come to the Halloween party?",     ko: "핼러윈 파티에 올 수 있니?",      emoji: "🎃" },
     { en: "Can you come to the sleepover party?",     ko: "파자마 파티에 올 수 있니?",      emoji: "🛌" },
+    { en: "Can you come to the water park party?",    ko: "워터파크 파티에 올 수 있니?",    emoji: "💦" },
+    { en: "Can you come to the fireworks festival?",  ko: "불꽃 축제에 올 수 있니?",        emoji: "🎆" },
   ],
   intermediate: [
     // 📘 교과서 행사
@@ -83,6 +88,8 @@ const SUGGESTION_LEVELS = {
     { en: "Can you come to the dance contest next week?",       ko: "다음 주에 댄스 대회에 올 수 있니?",     emoji: "💃" },
     { en: "Can you come to the Halloween party on Friday?",     ko: "금요일에 핼러윈 파티에 올 수 있니?",    emoji: "🎃" },
     { en: "Can you come to the sleepover party this Saturday?", ko: "이번 토요일에 파자마 파티에 올 수 있니?", emoji: "🛌" },
+    { en: "Can you come to the water park party on Sunday?",    ko: "일요일에 워터파크 파티에 올 수 있니?",  emoji: "💦" },
+    { en: "Can you come to the fireworks festival tonight?",    ko: "오늘 밤 불꽃 축제에 올 수 있니?",       emoji: "🎆" },
   ],
   advanced: [
     // 📘 교과서 행사
@@ -103,6 +110,8 @@ const SUGGESTION_LEVELS = {
     { en: "Can you come to the dance contest next week? I'll dance on stage.",         ko: "다음 주에 댄스 대회에 올 수 있니? 내가 무대에서 춤출 거야.",  emoji: "💃" },
     { en: "Can you come to the Halloween party on Friday? Please wear a costume.",     ko: "금요일에 핼러윈 파티에 올 수 있니? 분장 옷을 입고 와 줘.",    emoji: "🎃" },
     { en: "Can you come to the sleepover party this Saturday? We'll watch movies all night.", ko: "이번 토요일에 파자마 파티에 올 수 있니? 밤새 영화를 볼 거야.", emoji: "🛌" },
+    { en: "Can you come to the water park party on Sunday? We'll ride the big slides.", ko: "일요일에 워터파크 파티에 올 수 있니? 큰 슬라이드를 탈 거야.", emoji: "💦" },
+    { en: "Can you come to the fireworks festival tonight? The sky will be so beautiful.", ko: "오늘 밤 불꽃 축제에 올 수 있니? 하늘이 정말 아름다울 거야.", emoji: "🎆" },
   ],
 };
 
@@ -180,6 +189,8 @@ const BUILD_EVENTS = [
   { en: "the dance contest",       ko: "댄스 대회",       emoji: "💃", cat: "fun" },
   { en: "the Halloween party",     ko: "핼러윈 파티",     emoji: "🎃", cat: "fun" },
   { en: "the sleepover party",     ko: "파자마 파티",     emoji: "🛌", cat: "fun" },
+  { en: "the water park party",    ko: "워터파크 파티",   emoji: "💦", cat: "fun" },
+  { en: "the fireworks festival",  ko: "불꽃 축제",       emoji: "🎆", cat: "fun" },
 ];
 
 /* ===== 단어 뜻 사전 ===== */
@@ -231,6 +242,14 @@ const WORD_MEANINGS = {
   "contest": "대회, 경연",
   "halloween": "핼러윈",
   "sleepover": "친구 집에서 자며 노는 것 (파자마 파티)",
+  "water": "물 (water park: 워터파크)",
+  "fireworks": "불꽃놀이",
+  "ride": "타다",
+  "slides": "미끄럼틀, 슬라이드",
+  "sky": "하늘",
+  "will": "~할 것이다",
+  "so": "정말, 아주",
+  "beautiful": "아름다운",
   "on": "~에 (요일 앞에)",
   "saturday": "토요일",
   "sunday": "일요일",

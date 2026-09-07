@@ -16,21 +16,20 @@
 
 ## 기능
 
-- 🎉 **초대하기 (Can you come to ~?)** — 초급·중급·고급 난이도 × 2가지 행사 종류, **총 48문장**
+- 🎉 **초대하기 (Can you come to ~?)** — 초급·중급·고급 난이도 × 2가지 행사 종류, **총 54문장**
   - 📘 교과서 행사 6개: my birthday party · taekwondo show · laser show · book festival · movie festival · cooking class party
-  - 🎈 재미있는 행사 10개: K-pop concert · slime festival · magic show · school festival · pizza party · robot show · game party · dance contest · Halloween party · sleepover party
-- 💬 **대답하기** — 승낙 5개 카드 · 거절은 `Sorry, but I can't. I have a ___.` 빈칸에 이유 10개 중 골라 채우기 (piano lesson, math test, soccer game, cold, headache …)
-- 📍 **약속 잡기** — `Please come to ___ at ___.` 빈칸에 장소 10개(my house, the park, the library …) · 시간 10개(10 o'clock, noon, 2:30 …)를 골라 채우고 듣기 · ⭐ 담기
-- 🧩 **대화 만들기** — 위에 A/B 말풍선 대화가 빈칸으로 보이고, 아래에서 `행사` → `대답` → (승낙 시) `장소`·`시간`을 고르면 빈칸이 채워짐
-  - 단계마다 다음에 할 일을 안내하고, 완성되면 **전체 듣기 · 줄별 듣기 · ⭐ 담기**
-  - 🎲 무작위 조합 버튼
-- 🎤 **내 문장 연습** — ⭐로 담은 문장을 목록으로 보고 **🎙️ 말하기**로 정확도 측정 (Chrome 권장)
-  - 종류별(초대/대답/약속/내 대화) 필터, 모두 지우기
-  - 담은 대화는 줄마다 말하기 + **🎭 역할극**(내가 A 또는 B를 맡으면 컴퓨터가 상대 역할을 읽어 줌)
+  - 🎈 재미있는 행사 12개: K-pop concert · slime festival · magic show · school festival · pizza party · robot show · game party · dance contest · Halloween party · sleepover party · water park party · fireworks festival
+- 💬 **대답하기** — 승낙 5개 카드 · 거절은 `Sorry, but I can't. I have a ___.` 빈칸에 이유 10개 중 골라 채우기
+- 📍 **약속 잡기** — `Please come to ___ at ___.` 빈칸에 장소 10개 · 시간 10개를 골라 채우고 듣기
+- 🎒 **내 행사 만들기** — **세트 3개**(세트마다 행사 1개 + 약속 장소·시간 1개)와 **내 대답**(승낙 표현 1개 · 거절 문장 1개)을 고름
+  - 세트 탭을 눌러 가며 만들고, 말풍선 대화 빈칸이 채워지는 것을 확인 · 🎲 무작위 채우기 · 브라우저에 저장
+- 🎤 **세트 연습** — 만든 세트마다 `초대 → 대답 → 약속` 대화를 연습
+  - 친구가 **승낙**할 때 / **거절**할 때 두 버전, 줄마다 🎙️ 말하기로 정확도 측정
+  - 🎭 역할극: 내가 A(초대) 또는 B(대답)를 맡으면 컴퓨터가 상대 역할을 읽어 주고 내 차례에 마이크가 켜짐 (Chrome 권장)
 - 단어 클릭 시 **뜻 풍선 + 발음**, 말하기 **속도 조절** 슬라이더
 
 브라우저 내장 **Web Speech API**(음성 합성·음성 인식)를 사용합니다.
-선택한 문장과 연습 기록은 브라우저(localStorage)에 저장됩니다.
+내 행사 세트·대답과 연습 기록은 브라우저(localStorage)에 저장됩니다.
 
 ## 사용 방법
 
@@ -42,5 +41,5 @@
 |------|------|
 | `index.html` | 화면 구조(탭·섹션) |
 | `style.css`  | 디자인·파티 테마 |
-| `data.js`    | 초대·대답·장소·시간 문장, 단어 뜻, 대화 만들기 데이터 |
-| `app.js`     | 음성·단어 풍선·대화 만들기·연습 채점 로직 |
+| `data.js`    | 초대·대답·장소·시간 문장, 단어 뜻, 세트 만들기 데이터 |
+| `app.js`     | 음성·단어 풍선·세트 만들기·세트 연습(역할극) 채점 로직 |

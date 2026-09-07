@@ -20,8 +20,8 @@
     <button class="tab-btn active" data-tab="suggest">🎉 초대하기</button>
     <button class="tab-btn" data-tab="answer">💬 대답하기</button>
     <button class="tab-btn" data-tab="meet">📍 약속 잡기</button>
-    <button class="tab-btn" data-tab="build">🧩 대화 만들기</button>
-    <button class="tab-btn" data-tab="practice">🎤 내 문장 연습 <span id="practice-count" class="tab-count">0</span></button>
+    <button class="tab-btn" data-tab="build">🎒 내 행사 만들기 <span id="set-count" class="tab-count">0/3</span></button>
+    <button class="tab-btn" data-tab="practice">🎤 세트 연습</button>
   </nav>
 
   <div class="toolbar">
@@ -35,7 +35,7 @@
     <!-- ===== 초대하기 (Can you come to ~?) ===== -->
     <section id="tab-suggest" class="tab-panel active">
       <div class="section-block">
-        <h2>친구 초대하기 · Can you come to (the) ___? <span class="count">48개</span></h2>
+        <h2>친구 초대하기 · Can you come to (the) ___? <span class="count">54개</span></h2>
         <div class="level-switch">
           <button class="level-btn active" data-level="beginner">초급</button>
           <button class="level-btn" data-level="intermediate">중급</button>
@@ -46,7 +46,7 @@
           <button class="cat-btn" data-cat="book">📘 교과서 행사</button>
           <button class="cat-btn" data-cat="fun">🎈 재미있는 행사</button>
         </div>
-        <p class="hint">난이도와 행사 종류를 고르면 <b>교과서 행사 6개</b>(생일 파티·태권도 공연·레이저 쇼·책 축제·영화 축제·요리 교실 파티)와 <b>재미있는 행사 10개</b>(케이팝 콘서트·슬라임 축제·마술 쇼 등)가 나와요. <b>my birthday party</b>처럼 <b>my</b>가 붙는 행사는 <b>the</b>를 쓰지 않아요! 단어를 누르면 뜻과 발음을 알 수 있고, 마음에 드는 문장은 <b>⭐</b>로 연습 목록에 담아보세요.</p>
+        <p class="hint">난이도와 행사 종류를 고르면 <b>교과서 행사 6개</b>(생일 파티·태권도 공연·레이저 쇼·책 축제·영화 축제·요리 교실 파티)와 <b>재미있는 행사 12개</b>(케이팝 콘서트·슬라임 축제·마술 쇼·불꽃 축제 등)가 나와요. <b>my birthday party</b>처럼 <b>my</b>가 붙는 행사는 <b>the</b>를 쓰지 않아요! 단어를 누르면 뜻과 발음을 알 수 있어요. 마음에 드는 행사는 <b>🎒 내 행사 만들기</b>에서 골라 내 세트로 만들어요.</p>
         <div id="suggestion-grid" class="card-grid five"></div>
       </div>
     </section>
@@ -77,7 +77,7 @@
       <p class="hint" style="margin-bottom:18px">💡 친구가 <b>Of course.</b> 라고 승낙하면, <b>Please come to (장소) at (시간).</b> 으로 <b>어디서 몇 시에</b> 만날지 말해요.</p>
       <div class="section-block">
         <h2>🤝 약속 잡기 <span class="count">장소 10 · 시간 10</span></h2>
-        <p class="hint">장소와 시간을 골라 빈칸을 채우면 문장이 완성돼요. 완성된 문장은 듣고, <b>⭐</b>로 담아 연습해 보세요.</p>
+        <p class="hint">장소와 시간을 골라 빈칸을 채우면 문장이 완성돼요. 완성된 문장을 들어 보세요.</p>
         <div class="fill-box" id="meet-fill">
           <div class="fill-pattern">Please come to <span class="blank" id="meet-place-blank">________</span> at <span class="blank" id="meet-time-blank">________</span>.</div>
           <div class="fill-ko" id="meet-ko">________에 ________(으)로 와 줘.</div>
@@ -90,45 +90,50 @@
       </div>
     </section>
 
-    <!-- ===== 대화 만들기 ===== -->
+    <!-- ===== 🎒 내 행사 만들기 (3세트 + 내 대답) ===== -->
     <section id="tab-build" class="tab-panel">
       <div class="section-block">
-        <h2>🧩 나만의 초대 대화 만들기</h2>
-        <p class="hint">아래에서 ① <b>행사</b> ② <b>대답</b> ③ <b>장소·시간</b>(승낙했을 때)을 고르면 위의 대화 빈칸이 채워져요. 완성되면 <b>전체 듣기</b>로 듣고 <b>⭐</b>로 담아 연습해 보세요.</p>
+        <h2>🎒 내 행사 세트 만들기 <span class="count">3세트</span></h2>
+        <p class="hint">친구를 초대할 <b>내 행사 3개</b>를 만들어요. 세트마다 <b>행사 1개</b>와 약속 <b>장소·시간 1개</b>를 고르면 돼요. 만든 세트는 <b>🎤 세트 연습</b>에서 대화로 연습해요.</p>
+
+        <div class="set-tabs" id="set-tabs">
+          <button class="set-tab active" data-set="0">세트 1</button>
+          <button class="set-tab" data-set="1">세트 2</button>
+          <button class="set-tab" data-set="2">세트 3</button>
+        </div>
 
         <div class="fill-box dialog-box">
-          <div class="br-dialogue" id="dialog-preview">
+          <div class="br-dialogue">
             <div class="br-line line-a">
-              <span class="br-who">🙋 A</span>
+              <span class="br-who">🙋 나</span>
               <div class="br-bubble">
-                <div class="br-sentence">Can you come to <span class="blank" id="dlg-event">________</span>?</div>
-                <div class="br-ko" id="dlg-event-ko">________에 올 수 있니?</div>
+                <div class="br-sentence">Can you come to <span class="blank" id="set-event">________</span>?</div>
+                <div class="br-ko" id="set-event-ko">________에 올 수 있니?</div>
               </div>
-              <button class="speak-btn small" data-line="0" aria-label="이 줄 듣기">🔊</button>
+              <button class="speak-btn small" id="set-speak-invite" aria-label="이 줄 듣기">🔊</button>
             </div>
             <div class="br-line line-b">
-              <span class="br-who">🙆 B</span>
+              <span class="br-who">🙆 친구</span>
               <div class="br-bubble">
-                <div class="br-sentence" id="dlg-answer"><span class="blank">________</span></div>
-                <div class="br-ko" id="dlg-answer-ko">(승낙 또는 거절)</div>
+                <div class="br-sentence" id="set-accept-line">Of course.</div>
+                <div class="br-ko" id="set-accept-ko">물론이지.</div>
               </div>
-              <button class="speak-btn small" data-line="1" aria-label="이 줄 듣기">🔊</button>
+              <button class="speak-btn small" id="set-speak-accept" aria-label="이 줄 듣기">🔊</button>
             </div>
-            <div class="br-line line-a" id="dlg-meet-line">
-              <span class="br-who">🙋 A</span>
+            <div class="br-line line-a">
+              <span class="br-who">🙋 나</span>
               <div class="br-bubble">
-                <div class="br-sentence">Please come to <span class="blank" id="dlg-place">________</span> at <span class="blank" id="dlg-time">________</span>.</div>
-                <div class="br-ko" id="dlg-meet-ko">________에 ________(으)로 와 줘.</div>
+                <div class="br-sentence">Please come to <span class="blank" id="set-place">________</span> at <span class="blank" id="set-time">________</span>.</div>
+                <div class="br-ko" id="set-meet-ko">________에 ________(으)로 와 줘.</div>
               </div>
-              <button class="speak-btn small" data-line="2" aria-label="이 줄 듣기">🔊</button>
+              <button class="speak-btn small" id="set-speak-meet" aria-label="이 줄 듣기">🔊</button>
             </div>
           </div>
-          <div class="dlg-status" id="dlg-status">행사와 대답을 골라보세요! 👇</div>
-          <div class="fill-actions" id="dlg-actions">
-            <button id="build-listen" class="btn primary" disabled>🔊 전체 듣기</button>
-            <button id="build-star" class="btn" disabled>⭐ 연습 목록에 추가</button>
-            <button id="build-random" class="btn ghost">🎲 무작위 조합</button>
-            <button id="build-clear" class="btn ghost">🧹 다시 고르기</button>
+          <div class="dlg-status" id="set-status"></div>
+          <div class="fill-actions">
+            <button id="set-listen" class="btn primary" disabled>🔊 세트 듣기</button>
+            <button id="set-random" class="btn ghost">🎲 무작위로 채우기</button>
+            <button id="set-clear" class="btn ghost">🧹 이 세트 비우기</button>
           </div>
         </div>
 
@@ -137,39 +142,33 @@
           <div id="build-events"></div>
         </div>
         <div class="build-step">
-          <h3 class="build-label">2️⃣ 대답 고르기</h3>
-          <div class="chip-group-title">⭕ 승낙 (Yes)</div>
-          <div id="build-accept" class="chip-row wrap"></div>
-          <div class="chip-group-title">❌ 거절 · Sorry, but I can't. I have a ___.</div>
-          <div id="build-refuse" class="chip-row wrap"></div>
-        </div>
-        <div class="build-step" id="build-meet-step">
-          <h3 class="build-label">3️⃣ 약속 잡기 <span class="build-sub">승낙했을 때만 · Please come to ___ at ___.</span></h3>
+          <h3 class="build-label">2️⃣ 약속 장소·시간 고르기 <span class="build-sub">Please come to ___ at ___.</span></h3>
           <div class="chip-group-title">📍 장소 (Where)</div>
           <div id="build-place" class="chip-row wrap"></div>
           <div class="chip-group-title">⏰ 시간 (What time)</div>
           <div id="build-time" class="chip-row wrap"></div>
         </div>
       </div>
+
+      <div class="section-block">
+        <h2>💬 내 대답 정하기 <span class="count">승낙 1 · 거절 1</span></h2>
+        <p class="hint">친구가 초대했을 때 내가 쓸 <b>승낙 표현 1개</b>와 <b>거절 문장 1개</b>를 정해요. 세 세트 모두 이 대답으로 연습해요.</p>
+        <div class="build-step">
+          <div class="chip-group-title">⭕ 승낙 (Yes)</div>
+          <div id="build-accept" class="chip-row wrap"></div>
+          <div class="chip-group-title">❌ 거절 · Sorry, but I can't. I have a <span class="blank inline" id="build-refuse-blank">________</span>.</div>
+          <div id="build-refuse" class="chip-row wrap"></div>
+        </div>
+      </div>
     </section>
 
-    <!-- ===== 내 문장 연습 ===== -->
+    <!-- ===== 🎤 세트 연습 ===== -->
     <section id="tab-practice" class="tab-panel">
       <div class="section-block">
-        <h2>🎤 내 문장 연습</h2>
-        <p class="hint">⭐로 담은 문장을 <b>🎙️ 말하기</b> 버튼을 누르고 말하면 <b>정확도</b>를 재요. 담은 대화는 줄마다 말해 보거나, <b>🎭 역할극</b>으로 A·B 중 하나를 맡아 컴퓨터와 주고받을 수 있어요. (Chrome 권장)</p>
-        <div class="practice-bar">
-          <div class="cat-switch" id="practice-filter">
-            <button class="cat-btn active" data-filter="all">전체</button>
-            <button class="cat-btn" data-filter="suggest">🎉 초대</button>
-            <button class="cat-btn" data-filter="answer">💬 대답</button>
-            <button class="cat-btn" data-filter="meet">📍 약속</button>
-            <button class="cat-btn" data-filter="combo">🧩 내 대화</button>
-          </div>
-          <button id="practice-clear" class="btn ghost small">🗑️ 모두 지우기</button>
-        </div>
+        <h2>🎤 내 행사 세트 연습</h2>
+        <p class="hint">세트마다 <b>초대 → 대답 → 약속</b> 대화를 연습해요. 줄마다 <b>🎙️ 말하기</b>로 정확도를 재고, <b>🎭 역할극</b>에서 내가 <b>A(초대하는 사람)</b> 또는 <b>B(대답하는 사람)</b>를 맡으면 컴퓨터가 상대 역할을 읽어 줘요. 친구가 <b>승낙</b>할 때와 <b>거절</b>할 때 두 가지로 연습할 수 있어요. (Chrome 권장)</p>
         <p id="practice-empty" class="practice-empty">
-          아직 담은 문장이 없어요! <b>초대하기</b>·<b>대답하기</b>·<b>약속 잡기</b>·<b>대화 만들기</b> 탭에서 <b>⭐</b>로 연습할 문장을 담아보세요.
+          아직 만든 세트가 없어요! <b>🎒 내 행사 만들기</b> 탭에서 행사와 약속 장소·시간을 골라 세트를 만들어 보세요.
         </p>
         <div id="practice-list" class="practice-list"></div>
       </div>
