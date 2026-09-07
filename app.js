@@ -317,7 +317,7 @@ function renderBuilder() {
     row.className = "chip-row wrap";
     items.forEach(a => {
       const chip = makeChip(`${a.emoji} ${a.en}`, "act", s.event === a.en, () => {
-        s.event = a.en; persist(); renderBuilder(); updateSetPreview();
+        s.event = a.en; persist(); renderBuilder(); updateSetPreview(true);
       });
       if (usedElsewhere.has(a.en)) { chip.classList.add("used"); chip.title = "다른 세트에서 이미 골랐어요"; }
       row.appendChild(chip);
@@ -326,12 +326,12 @@ function renderBuilder() {
   });
   PLACE_EXPRESSIONS.forEach(p => {
     placeRow.appendChild(makeChip(`${p.emoji} ${p.en}`, "place", s.place === p.en, () => {
-      s.place = p.en; persist(); renderBuilder(); updateSetPreview();
+      s.place = p.en; persist(); renderBuilder(); updateSetPreview(true);
     }));
   });
   TIME_EXPRESSIONS.forEach(t => {
     timeRow.appendChild(makeChip(`${t.emoji} ${t.en}`, "with", s.time === t.en, () => {
-      s.time = t.en; persist(); renderBuilder(); updateSetPreview();
+      s.time = t.en; persist(); renderBuilder(); updateSetPreview(true);
     }));
   });
   ACCEPT_EXPRESSIONS.forEach(m => {
@@ -352,7 +352,7 @@ function renderBuilder() {
 }
 
 let lastSetSpoken = "";
-function updateSetPreview() {
+function updateSetPreview(autoSpeak) {
   const s = mySets[curSet];
   const ev = findEvent(s.event), pl = findPlace(s.place), tm = findTime(s.time), acc = findAccept(myAccept);
   setBlank("set-event", ev && ev.en);
@@ -373,10 +373,11 @@ function updateSetPreview() {
   renderSheetSummary();
   document.getElementById("set-listen").disabled = !complete;
   updateSetBadge();
-  if (complete) {
+  // 자동 읽기는 사용자가 칩을 눌러 고른 직후에만 (페이지 열기·탭 전환 때는 조용히)
+  if (complete && autoSpeak) {
     const en = setLines(s, "accept").map(l => l.en).join(" ");
     if (en !== lastSetSpoken) { lastSetSpoken = en; speak(en); }
-  } else lastSetSpoken = "";
+  } else if (!complete) lastSetSpoken = "";
 }
 
 document.querySelectorAll("#set-tabs .set-tab").forEach(btn => {
@@ -406,7 +407,7 @@ document.getElementById("set-random").addEventListener("click", () => {
   s.place = pick(PLACE_EXPRESSIONS).en;
   s.time = pick(TIME_EXPRESSIONS).en;
   if (!myReason) myReason = pick(REFUSE_REASONS).en;
-  persist(); renderBuilder(); updateSetPreview();
+  persist(); renderBuilder(); updateSetPreview(true);
 });
 document.getElementById("set-clear").addEventListener("click", () => {
   mySets[curSet] = { event: null, place: null, time: null };
