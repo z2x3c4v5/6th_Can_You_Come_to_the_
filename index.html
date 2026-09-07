@@ -60,9 +60,15 @@
         <div id="accept-grid" class="card-grid five"></div>
       </div>
       <div class="section-block">
-        <h2>❌ 거절 (No) · Sorry, but I can't. I have a ___. <span class="count">10개</span></h2>
-        <p class="hint">못 갈 때는 미안하다고 말한 뒤 <b>이유</b>를 말해요. (예: I have a <b>piano lesson</b>.)</p>
-        <div id="refuse-grid" class="card-grid five"></div>
+        <h2>❌ 거절 (No) <span class="count">10개</span></h2>
+        <p class="hint">못 갈 때는 미안하다고 말한 뒤 <b>이유</b>를 골라 빈칸을 채워요.</p>
+        <div class="fill-box" id="refuse-fill">
+          <div class="fill-pattern">Sorry, but I can't. I have a <span class="blank" id="refuse-blank">________</span>.</div>
+          <div class="fill-ko" id="refuse-ko">미안하지만 못 가. 나 ________(이)가 있어.</div>
+          <div class="chip-group-title">📌 이유 (I have a ___.)</div>
+          <div id="refuse-chips" class="chip-row wrap"></div>
+          <div class="fill-actions" id="refuse-actions"></div>
+        </div>
       </div>
     </section>
 
@@ -70,19 +76,17 @@
     <section id="tab-meet" class="tab-panel">
       <p class="hint" style="margin-bottom:18px">💡 친구가 <b>Of course.</b> 라고 승낙하면, <b>Please come to (장소) at (시간).</b> 으로 <b>어디서 몇 시에</b> 만날지 말해요.</p>
       <div class="section-block">
-        <h2>📍 장소 (Where) <span class="count">10개</span></h2>
-        <p class="hint">어디로 오라고 할지 골라요. (예: Please come to <b>my house</b> at 3 o'clock.)</p>
-        <div id="place-grid" class="card-grid five"></div>
-      </div>
-      <div class="section-block">
-        <h2>⏰ 시간 (What time) <span class="count">10개</span></h2>
-        <p class="hint">몇 시에 오라고 할지 골라요. (예: Please come to the park at <b>2 o'clock</b>.)</p>
-        <div id="time-grid" class="card-grid five"></div>
-      </div>
-      <div class="section-block">
-        <h2>🤝 약속 문장 · Please come to ___ at ___. <span class="count">10개</span></h2>
-        <p class="hint">장소와 시간을 합친 문장이에요. <b>⭐</b>로 담아 연습해 보세요.</p>
-        <div id="meet-grid" class="card-grid five"></div>
+        <h2>🤝 약속 잡기 <span class="count">장소 10 · 시간 10</span></h2>
+        <p class="hint">장소와 시간을 골라 빈칸을 채우면 문장이 완성돼요. 완성된 문장은 듣고, <b>⭐</b>로 담아 연습해 보세요.</p>
+        <div class="fill-box" id="meet-fill">
+          <div class="fill-pattern">Please come to <span class="blank" id="meet-place-blank">________</span> at <span class="blank" id="meet-time-blank">________</span>.</div>
+          <div class="fill-ko" id="meet-ko">________에 ________(으)로 와 줘.</div>
+          <div class="chip-group-title">📍 장소 (Where)</div>
+          <div id="meet-place-chips" class="chip-row wrap"></div>
+          <div class="chip-group-title">⏰ 시간 (What time)</div>
+          <div id="meet-time-chips" class="chip-row wrap"></div>
+          <div class="fill-actions" id="meet-actions"></div>
+        </div>
       </div>
     </section>
 

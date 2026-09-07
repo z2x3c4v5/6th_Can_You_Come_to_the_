@@ -128,13 +128,6 @@ const REFUSE_REASONS = [
   { en: "headache",             ko: "두통",            emoji: "🤕", imgPrompt: "child with a headache" },
   { en: "lot of homework",      ko: "많은 숙제",       emoji: "📚", imgPrompt: "child doing a lot of homework" },
 ];
-/* 거절 문장 카드 (Sorry, but I can't. I have a ~.) */
-const REFUSE_EXPRESSIONS = REFUSE_REASONS.map(r => ({
-  en: `Sorry, but I can't. I have a ${r.en}.`,
-  ko: `미안하지만 못 가. 나 ${r.ko}(이)가 있어.`,
-  emoji: r.emoji, imgPrompt: r.imgPrompt,
-}));
-
 /* ===== 약속 잡기 : 장소 (Where) ===== */
 const PLACE_EXPRESSIONS = [
   { en: "my house",           ko: "우리 집",       emoji: "🏠", imgPrompt: "a cozy house with a front door" },
@@ -162,16 +155,6 @@ const TIME_EXPRESSIONS = [
   { en: "5 o'clock",  ko: "5시",      emoji: "🕔", imgPrompt: "clock showing five o'clock" },
   { en: "6 o'clock",  ko: "6시",      emoji: "🕕", imgPrompt: "clock showing six o'clock" },
 ];
-/* 약속 문장 카드 (Please come to ~ at ~.) - 장소·시간 짝지어 보여주기 */
-const MEET_EXPRESSIONS = PLACE_EXPRESSIONS.map((p, i) => {
-  const t = TIME_EXPRESSIONS[i];
-  return {
-    en: `Please come to ${p.en} at ${t.en}.`,
-    ko: `${t.ko}에 ${p.ko}(으)로 와 줘.`,
-    emoji: p.emoji, imgPrompt: p.imgPrompt,
-  };
-});
-
 /* ===== 대화 만들기 (행사 + 대답 + 장소/시간 조합) ===== */
 const BUILD_CATS = [
   { key: "book", label: "📘 교과서 행사" },

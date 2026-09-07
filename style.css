@@ -410,80 +410,12 @@ main { max-width: 980px; margin: 0 auto; padding: 0 16px 50px; }
 .speed-control input { accent-color: var(--primary); }
 .voice-status { font-size: 0.78rem; color: var(--muted); }
 
-/* ===== 영역별 내부 스크롤 (전체 페이지 스크롤 최소화) =====
- * 카드는 가로로 채워서 펼치고, 넘치는 부분만 그 영역 안에서 스크롤돼요. */
-#suggestion-grid,
-#accept-grid, #refuse-grid, #place-grid, #time-grid, #meet-grid,
-#build-events,
-#practice-list {
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  padding: 8px 10px 12px 4px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(139, 92, 246, 0.55) transparent;
-}
-#suggestion-grid { max-height: clamp(300px, 58vh, 820px); }
-#accept-grid, #refuse-grid, #place-grid, #time-grid, #meet-grid { max-height: clamp(170px, 27vh, 420px); }
-#build-events { max-height: clamp(200px, 40vh, 520px); }
-#practice-list { max-height: clamp(300px, 64vh, 1000px); }
-
-/* 스크롤 영역임을 살짝 표시 (은은한 배경 + 둥근 모서리) */
-#suggestion-grid, #accept-grid, #refuse-grid, #place-grid, #time-grid, #meet-grid, #build-events {
-  background: rgba(255, 255, 255, 0.32);
-  border-radius: 18px;
-}
-
-/* 크롬/사파리 스크롤바 */
-#suggestion-grid::-webkit-scrollbar,
-#accept-grid::-webkit-scrollbar, #refuse-grid::-webkit-scrollbar, #place-grid::-webkit-scrollbar,
-#time-grid::-webkit-scrollbar, #meet-grid::-webkit-scrollbar,
-#build-events::-webkit-scrollbar,
-#practice-list::-webkit-scrollbar {
-  width: 10px;
-}
-#suggestion-grid::-webkit-scrollbar-thumb,
-#accept-grid::-webkit-scrollbar-thumb, #refuse-grid::-webkit-scrollbar-thumb, #place-grid::-webkit-scrollbar-thumb,
-#time-grid::-webkit-scrollbar-thumb, #meet-grid::-webkit-scrollbar-thumb,
-#build-events::-webkit-scrollbar-thumb,
-#practice-list::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.5);
-  border-radius: 999px;
-}
-#suggestion-grid::-webkit-scrollbar-thumb:hover,
-#build-events::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.75);
-}
-
 /* 탭 메뉴는 위에 고정해 어느 영역에서 스크롤하든 항상 보이도록 */
 .tabs {
   position: sticky; top: 0; z-index: 30;
   background: rgba(243, 232, 255, 0.92);
   backdrop-filter: blur(6px);
   margin: 0 auto; padding: 12px 14px;
-}
-
-/* ===== 문장 만들기: 모든 칩 줄을 '가로'로 배치 + 좌우 스크롤 ===== */
-#build-events { max-height: none; overflow-y: visible; min-width: 0; }
-.build-step .chip-row {
-  flex-wrap: nowrap;          /* 줄바꿈 없이 한 줄로 */
-  overflow-x: auto;           /* 넘치면 좌우(가로) 스크롤 */
-  overflow-y: hidden;
-  padding-bottom: 10px;
-  scroll-snap-type: x proximity;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(139, 92, 246, 0.5) transparent;
-}
-.build-step .chip {
-  flex: 0 0 auto;             /* 칩이 줄어들지 않게 */
-  white-space: nowrap;
-  scroll-snap-align: start;
-}
-.build-step .chip-row::-webkit-scrollbar { height: 9px; }
-.build-step .chip-row::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.5); border-radius: 999px;
-}
-.build-step .chip-row::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.75);
 }
 
 /* 시간(Time) 칩 선택 색 */
@@ -517,3 +449,24 @@ main { max-width: 980px; margin: 0 auto; padding: 0 16px 50px; }
   .br-dialogue .br-sentence { font-size: 1.1rem; }
   .br-who { width: 36px; font-size: 0.8rem; }
 }
+
+/* ===== 빈칸 채우기 (거절 · 약속) ===== */
+.fill-box {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1.5px solid rgba(139, 92, 246, 0.18);
+  border-radius: 22px; padding: 20px 22px; box-shadow: var(--shadow-sm);
+}
+.fill-pattern {
+  font-size: 1.9rem; font-weight: 800; line-height: 1.5; text-align: center;
+  color: var(--primary-dark); margin: 4px 0 6px;
+}
+.fill-pattern .blank {
+  display: inline-block; min-width: 120px; padding: 0 8px; border-radius: 12px;
+  border-bottom: 4px solid var(--accent); color: var(--muted); letter-spacing: 1px;
+}
+.fill-pattern .blank.filled { background: #fdf2f8; color: var(--sea); letter-spacing: 0; border-bottom-color: var(--sea); }
+.fill-ko { text-align: center; color: var(--text); font-size: 1.05rem; margin-bottom: 8px; }
+.fill-box .chip-group-title { margin-top: 16px; }
+.fill-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
+.fill-actions:empty { display: none; }
+@media (max-width: 560px) { .fill-pattern { font-size: 1.35rem; } .fill-pattern .blank { min-width: 90px; } }

@@ -19,8 +19,8 @@
 - 🎉 **초대하기 (Can you come to ~?)** — 초급·중급·고급 난이도 × 2가지 행사 종류, **총 48문장**
   - 📘 교과서 행사 6개: my birthday party · taekwondo show · laser show · book festival · movie festival · cooking class party
   - 🎈 재미있는 행사 10개: K-pop concert · slime festival · magic show · school festival · pizza party · robot show · game party · dance contest · Halloween party · sleepover party
-- 💬 **대답하기** — 승낙 5개 · 거절 이유 10개 (piano lesson, math test, soccer game, cold, headache …)
-- 📍 **약속 잡기** — 장소 10개(my house, the park, the library …) · 시간 10개(10 o'clock, noon, 2:30 …) · 약속 문장 10개
+- 💬 **대답하기** — 승낙 5개 카드 · 거절은 `Sorry, but I can't. I have a ___.` 빈칸에 이유 10개 중 골라 채우기 (piano lesson, math test, soccer game, cold, headache …)
+- 📍 **약속 잡기** — `Please come to ___ at ___.` 빈칸에 장소 10개(my house, the park, the library …) · 시간 10개(10 o'clock, noon, 2:30 …)를 골라 채우고 듣기 · ⭐ 담기
 - 🧩 **대화 만들기** — `행사` + `대답` (+ 승낙 시 `장소` + `시간`)을 골라 A/B 대화를 조합
   - 거절했는데 장소·시간을 고르거나, 승낙 후 장소·시간이 빠지면 **맞는지 검사**해 알려주고,
     올바른 대화는 **말풍선 대화 + 한글 번역 + 듣기(TTS)** 제공
