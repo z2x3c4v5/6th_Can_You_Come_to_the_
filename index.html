@@ -3,23 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Summer Plan Makers · 여름방학 영어</title>
+  <title>Party Inviters · Can you come to the ___?</title>
   <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="app-header">
-    <div class="sun"></div>
-    <div class="cloud cloud1"></div>
-    <div class="cloud cloud2"></div>
-    <h1>🏖️ Summer Plan Makers</h1>
-    <p class="subtitle">What will you do this summer? · 여름방학 계획을 영어로 말해 봐요!</p>
+    <div class="balloon balloon1">🎈</div>
+    <div class="balloon balloon2">🎈</div>
+    <div class="confetti"></div>
+    <h1>🎉 Party Inviters</h1>
+    <p class="subtitle">Can you come to the ___? · 친구를 영어로 초대하고 대답해 봐요!</p>
   </header>
 
   <nav class="tabs">
-    <button class="tab-btn active" data-tab="suggest">☀️ 할 일 말하기</button>
-    <button class="tab-btn" data-tab="words">📅 때·장소·누구와</button>
-    <button class="tab-btn" data-tab="build">🧩 문장 만들기</button>
+    <button class="tab-btn active" data-tab="suggest">🎉 초대하기</button>
+    <button class="tab-btn" data-tab="answer">💬 대답하기</button>
+    <button class="tab-btn" data-tab="meet">📍 약속 잡기</button>
+    <button class="tab-btn" data-tab="build">🧩 대화 만들기</button>
     <button class="tab-btn" data-tab="practice">🎤 내 문장 연습 <span id="practice-count" class="tab-count">0</span></button>
   </nav>
 
@@ -31,10 +32,10 @@
   </div>
 
   <main>
-    <!-- ===== 할 일 말하기 (I'll ~) ===== -->
+    <!-- ===== 초대하기 (Can you come to ~?) ===== -->
     <section id="tab-suggest" class="tab-panel active">
       <div class="section-block">
-        <h2>여름방학에 할 일 <span class="count">96개</span></h2>
+        <h2>친구 초대하기 · Can you come to (the) ___? <span class="count">48개</span></h2>
         <div class="level-switch">
           <button class="level-btn active" data-level="beginner">초급</button>
           <button class="level-btn" data-level="intermediate">중급</button>
@@ -42,57 +43,76 @@
         </div>
         <div class="cat-switch">
           <button class="cat-btn active" data-cat="all">전체</button>
-          <button class="cat-btn" data-cat="make">🌱 만들기·꾸미기</button>
-          <button class="cat-btn" data-cat="active">🏃 운동·배우기</button>
-          <button class="cat-btn" data-cat="trip">🏖️ 나들이·여행</button>
-          <button class="cat-btn" data-cat="home">🎮 놀이·취미</button>
+          <button class="cat-btn" data-cat="book">📘 교과서 행사</button>
+          <button class="cat-btn" data-cat="fun">🎈 재미있는 행사</button>
         </div>
-        <p class="hint">난이도와 활동 종류를 고르면 종류마다 <b>7~9가지</b> 문장이 나와요. 인생네컷·워터파크·노래방·떡볶이·폰게임처럼 너희가 좋아하는 활동도 많아! 단어를 누르면 뜻과 발음을 알 수 있고, 마음에 드는 문장은 <b>⭐</b>로 연습 목록에 담아보세요.</p>
+        <p class="hint">난이도와 행사 종류를 고르면 <b>교과서 행사 6개</b>(생일 파티·태권도 공연·레이저 쇼·책 축제·영화 축제·요리 교실 파티)와 <b>재미있는 행사 10개</b>(케이팝 콘서트·슬라임 축제·마술 쇼 등)가 나와요. <b>my birthday party</b>처럼 <b>my</b>가 붙는 행사는 <b>the</b>를 쓰지 않아요! 단어를 누르면 뜻과 발음을 알 수 있고, 마음에 드는 문장은 <b>⭐</b>로 연습 목록에 담아보세요.</p>
         <div id="suggestion-grid" class="card-grid five"></div>
       </div>
     </section>
 
-    <!-- ===== 때 · 장소 · 누구와 ===== -->
-    <section id="tab-words" class="tab-panel">
-      <p class="hint" style="margin-bottom:18px">💡 <b>What will you do this summer?</b> 의 답(<b>I'll ~</b>)에 아래 표현을 <b>덧붙여</b> 문장을 더 풍부하게 만들어요. 질문에 이미 <b>this summer</b>(이번 여름) 시점이 있으니, 답에는 시점을 또 말하지 않고 <b>얼마나 자주·어디서·누구와</b> 를 더해요.</p>
+    <!-- ===== 대답하기 (승낙 · 거절) ===== -->
+    <section id="tab-answer" class="tab-panel">
+      <p class="hint" style="margin-bottom:18px">💡 <b>Can you come to the ___?</b> 라고 초대를 받으면 <b>갈 수 있을 때</b>와 <b>못 갈 때</b> 이렇게 대답해요. 못 갈 때는 <b>Sorry, but I can't.</b> 뒤에 <b>I have a ___.</b> 로 이유를 말해요.</p>
       <div class="section-block">
-        <h2>📅 때 (When) <span class="count">8개</span></h2>
-        <p class="hint">얼마나 자주·언제 할지 더해요. (예: I'll read books <b>every day</b>.)</p>
-        <div id="day-grid" class="card-grid five"></div>
+        <h2>⭕ 승낙 (Yes) <span class="count">5개</span></h2>
+        <p class="hint">갈 수 있을 때 대답해요. 교과서 표현은 <b>Of course.</b> 예요.</p>
+        <div id="accept-grid" class="card-grid five"></div>
       </div>
       <div class="section-block">
-        <h2>📍 장소 (Where) <span class="count">12개</span></h2>
-        <p class="hint">어디서 할지 더해요. (예: I'll play soccer <b>at the park</b>.)</p>
-        <div id="place-grid" class="card-grid five"></div>
-      </div>
-      <div class="section-block">
-        <h2>👫 누구와 (With whom) <span class="count">8개</span></h2>
-        <p class="hint">누구와 함께할지 더해요. (예: I'll go to a water park <b>with my friends</b>.)</p>
-        <div id="with-grid" class="card-grid five"></div>
+        <h2>❌ 거절 (No) · Sorry, but I can't. I have a ___. <span class="count">10개</span></h2>
+        <p class="hint">못 갈 때는 미안하다고 말한 뒤 <b>이유</b>를 말해요. (예: I have a <b>piano lesson</b>.)</p>
+        <div id="refuse-grid" class="card-grid five"></div>
       </div>
     </section>
 
-    <!-- ===== 문장 만들기 ===== -->
+    <!-- ===== 약속 잡기 (Please come to ~ at ~.) ===== -->
+    <section id="tab-meet" class="tab-panel">
+      <p class="hint" style="margin-bottom:18px">💡 친구가 <b>Of course.</b> 라고 승낙하면, <b>Please come to (장소) at (시간).</b> 으로 <b>어디서 몇 시에</b> 만날지 말해요.</p>
+      <div class="section-block">
+        <h2>📍 장소 (Where) <span class="count">10개</span></h2>
+        <p class="hint">어디로 오라고 할지 골라요. (예: Please come to <b>my house</b> at 3 o'clock.)</p>
+        <div id="place-grid" class="card-grid five"></div>
+      </div>
+      <div class="section-block">
+        <h2>⏰ 시간 (What time) <span class="count">10개</span></h2>
+        <p class="hint">몇 시에 오라고 할지 골라요. (예: Please come to the park at <b>2 o'clock</b>.)</p>
+        <div id="time-grid" class="card-grid five"></div>
+      </div>
+      <div class="section-block">
+        <h2>🤝 약속 문장 · Please come to ___ at ___. <span class="count">10개</span></h2>
+        <p class="hint">장소와 시간을 합친 문장이에요. <b>⭐</b>로 담아 연습해 보세요.</p>
+        <div id="meet-grid" class="card-grid five"></div>
+      </div>
+    </section>
+
+    <!-- ===== 대화 만들기 ===== -->
     <section id="tab-build" class="tab-panel">
       <div class="section-block">
-        <h2>🧩 나만의 문장 만들기</h2>
-        <p class="hint">① <b>할 일</b>과 ② <b>때·장소</b>를 골라 나만의 여름 계획 문장을 만들어 보세요! 문장이 맞는지 확인하고, 전체 문장 · 한글 뜻 · 발음까지 알려줄게요.</p>
+        <h2>🧩 나만의 초대 대화 만들기</h2>
+        <p class="hint">① <b>행사</b>를 고르고 ② <b>대답</b>(승낙 또는 거절)을 고르세요. 승낙했다면 ③ <b>장소·시간</b>까지 골라 약속을 잡아요! 대화가 맞는지 확인하고, 전체 대화 · 한글 뜻 · 발음까지 알려줄게요.</p>
 
         <div class="builder">
           <div class="build-steps">
             <div class="build-step">
-              <h3 class="build-label">1️⃣ 할 일 고르기 <span class="build-sub">(종류별로 골라봐요)</span></h3>
-              <div id="build-activities"></div>
+              <h3 class="build-label">1️⃣ 행사 고르기 <span class="build-sub">(Can you come to ___?)</span></h3>
+              <div id="build-events"></div>
             </div>
 
             <div class="build-step">
-              <h3 class="build-label">2️⃣ 언제·어디서·누구와 할지 고르기</h3>
-              <div class="chip-group-title">📅 때 (When)</div>
-              <div id="build-when" class="chip-row"></div>
+              <h3 class="build-label">2️⃣ 대답 고르기</h3>
+              <div class="chip-group-title">⭕ 승낙 (Yes)</div>
+              <div id="build-accept" class="chip-row"></div>
+              <div class="chip-group-title">❌ 거절 (Sorry, but I can't. I have a ___.)</div>
+              <div id="build-refuse" class="chip-row"></div>
+            </div>
+
+            <div class="build-step" id="build-meet-step">
+              <h3 class="build-label">3️⃣ 약속 잡기 <span class="build-sub">(승낙했을 때만 · Please come to ___ at ___.)</span></h3>
               <div class="chip-group-title">📍 장소 (Where)</div>
-              <div id="build-where" class="chip-row"></div>
-              <div class="chip-group-title">👫 누구와 (With whom)</div>
-              <div id="build-with" class="chip-row"></div>
+              <div id="build-place" class="chip-row"></div>
+              <div class="chip-group-title">⏰ 시간 (What time)</div>
+              <div id="build-time" class="chip-row"></div>
             </div>
           </div>
 
@@ -102,7 +122,7 @@
           </div>
 
           <div id="build-result" class="build-result empty">
-            할 일과 때·장소를 골라보세요! 👆
+            행사와 대답을 골라보세요! 👆
           </div>
         </div>
       </div>
@@ -112,9 +132,9 @@
     <section id="tab-practice" class="tab-panel">
       <div class="section-block">
         <h2>🎤 내 문장 연습</h2>
-        <p class="hint">⭐로 담은 문장을 마이크로 말해 <b>정확도</b>를 측정해요. 카드의 <b>🙋 할 일</b> / <b>🧩 내 문장</b> 표시로 어디서 담았는지 알 수 있어요.</p>
+        <p class="hint">⭐로 담은 문장을 마이크로 말해 <b>정확도</b>를 측정해요. 카드의 <b>🎉 초대</b> / <b>💬 대답</b> / <b>📍 약속</b> / <b>🧩 내 대화</b> 표시로 어디서 담았는지 알 수 있어요.</p>
         <p id="practice-empty" class="practice-empty">
-          아직 담은 문장이 없어요! <b>할 일 말하기</b>나 <b>문장 만들기</b> 탭에서 <b>⭐</b>로 연습할 문장을 담아보세요.
+          아직 담은 문장이 없어요! <b>초대하기</b>·<b>대답하기</b>·<b>약속 잡기</b>·<b>대화 만들기</b> 탭에서 <b>⭐</b>로 연습할 문장을 담아보세요.
         </p>
         <div id="practice-list" class="card-grid practice-grid"></div>
       </div>
@@ -122,7 +142,7 @@
   </main>
 
   <footer class="app-footer">
-    <span class="voice-status">5학년 영어 · 6단원 What will you do this summer? 🌻</span>
+    <span class="voice-status">6학년 영어 · Can you come to the ___? 🎉</span>
   </footer>
 
   <script src="data.js"></script>
