@@ -583,12 +583,12 @@ function renderSheetSummary() {
   mySets.forEach((s, i) => {
     const ev = findEvent(s.event), pl = findPlace(s.place), tm = findTime(s.time);
     box.appendChild(sheetRow(`내가 선택한 행사 ${i + 1}`, ev && `Can you come to ${ev.en}?`, ev && `${ev.ko}에 올 수 있니?`));
-    box.appendChild(sheetRow(`약속 장소와 시간 ${i + 1}`, pl && tm && `Please come to ${pl.en} at ${tm.en}.`, pl && tm && `${tm.ko}에 ${pl.ko}(으)로 와 줘.`));
+    box.appendChild(sheetRow(`약속 시간과 장소 ${i + 1}`, pl && tm && `Please come to ${pl.en} at ${tm.en}.`, pl && tm && `${tm.ko}에 ${pl.ko}(으)로 와 줘.`));
   });
   const rs = findReason(myReason);
   box.appendChild(sheetRow("초대 거절 할 때", rs && `Sorry, but I can't. I have a ${rs.en}.`, rs && `미안하지만 못 가. 나 ${rs.ko}(이)가 있어.`));
   const acc = findAccept(myAccept);
-  box.appendChild(sheetRow("초대 승낙 할 때", acc.en, acc.ko));
+  box.appendChild(sheetRow("초대 승낙 할 때 (말하기용)", acc.en, acc.ko));
 }
 
 /* ===========================================================
@@ -600,7 +600,7 @@ function renderPairCards() {
   const done = mySets.map((s, i) => [s, i]).filter(([s]) => setComplete(s));
   if (!done.length) {
     const p = document.createElement("p"); p.className = "practice-empty";
-    p.innerHTML = "아직 만든 행사가 없어요! <b>🎒 내가 선택한 행사</b>에서 먼저 만들어요.";
+    p.innerHTML = "아직 만든 행사가 없어요! <b>🎒 내 행사 만들기</b>에서 먼저 만들어요.";
     box.appendChild(p); return;
   }
   const rs = findReason(myReason), acc = findAccept(myAccept);
@@ -728,7 +728,7 @@ function renderPractice() {
   if (done.length < SET_COUNT) {
     const note = document.createElement("p");
     note.className = "practice-empty";
-    note.innerHTML = `아직 <b>${SET_COUNT - done.length}개</b> 행사가 비어 있어요. <b>🎒 내가 선택한 행사</b>에서 마저 만들어 보세요.`;
+    note.innerHTML = `아직 <b>${SET_COUNT - done.length}개</b> 행사가 비어 있어요. <b>🎒 내 행사 만들기</b>에서 마저 만들어 보세요.`;
     list.appendChild(note);
   }
 }
