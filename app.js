@@ -294,7 +294,7 @@ function updateSetBadge() {
     b.classList.toggle("active", i === curSet);
     b.classList.toggle("done", setComplete(mySets[i]));
     const ev = findEvent(mySets[i].event);
-    b.textContent = `세트 ${i + 1} ${ev ? ev.emoji : ""}${setComplete(mySets[i]) ? " ✓" : ""}`;
+    b.textContent = `행사 ${i + 1} ${ev ? ev.emoji : ""}${setComplete(mySets[i]) ? " ✓" : ""}`;
   });
 }
 
@@ -367,9 +367,10 @@ function updateSetPreview() {
   const status = document.getElementById("set-status");
   const complete = setComplete(s);
   status.className = "dlg-status" + (complete ? " ok" : "");
-  if (!ev) status.textContent = `세트 ${curSet + 1} · 1️⃣ 초대할 행사를 골라보세요 👇`;
-  else if (!pl || !tm) status.textContent = `세트 ${curSet + 1} · 2️⃣ 약속 ${!pl ? "📍 장소" : ""}${!pl && !tm ? "와 " : ""}${!tm ? "⏰ 시간" : ""}을 골라요 👇`;
-  else status.textContent = `✅ 세트 ${curSet + 1} 완성! ${completeCount() < SET_COUNT ? "다음 세트도 만들어 보세요." : "세 세트 모두 완성! 🎤 세트 연습으로 가요."}`;
+  if (!ev) status.textContent = `행사 ${curSet + 1} · 1️⃣ 초대할 행사를 골라보세요 👇`;
+  else if (!pl || !tm) status.textContent = `행사 ${curSet + 1} · 2️⃣ 약속 ${!pl ? "📍 장소" : ""}${!pl && !tm ? "와 " : ""}${!tm ? "⏰ 시간" : ""}을 골라요 👇`;
+  else status.textContent = `✅ 행사 ${curSet + 1} 완성! ${completeCount() < SET_COUNT ? "다음 행사도 만들어 보세요." : "세 행사 모두 완성! 📝 워크시트에 적고 🎤 연습으로 가요."}`;
+  renderSheetSummary();
   document.getElementById("set-listen").disabled = !complete;
   updateSetBadge();
   if (complete) {
@@ -557,7 +558,85 @@ function makeSpeakRow(en, ko, who) {
 
 
 /* ===========================================================
- * 🎤 세트 연습 (세트별 대화: 줄마다 말하기 + 역할극)
+ * 📝 워크시트에 적기 (2번 표와 같은 순서)
+ * =========================================================== */
+function sheetRow(label, en, ko) {
+  const row = document.createElement("div");
+  row.className = "sheet-row" + (en ? "" : " empty");
+  const lab = document.createElement("div"); lab.className = "sheet-label"; lab.textContent = label;
+  const val = document.createElement("div"); val.className = "sheet-val";
+  if (en) {
+    const e = document.createElement("div"); e.className = "en"; e.appendChild(buildWords(en));
+    const k = document.createElement("div"); k.className = "ko"; k.textContent = ko;
+    val.append(e, k);
+  } else val.textContent = "아직 고르지 않았어요";
+  const btn = document.createElement("button");
+  btn.className = "speak-btn small"; btn.textContent = "🔊"; btn.disabled = !en;
+  btn.addEventListener("click", () => en && speak(en));
+  row.append(lab, val, btn);
+  return row;
+}
+function renderSheetSummary() {
+  const box = document.getElementById("sheet-summary");
+  if (!box) return;
+  box.innerHTML = "";
+  mySets.forEach((s, i) => {
+    const ev = findEvent(s.event), pl = findPlace(s.place), tm = findTime(s.time);
+    box.appendChild(sheetRow(`내가 선택한 행사 ${i + 1}`, ev && `Can you come to ${ev.en}?`, ev && `${ev.ko}에 올 수 있니?`));
+    box.appendChild(sheetRow(`약속 장소와 시간 ${i + 1}`, pl && tm && `Please come to ${pl.en} at ${tm.en}.`, pl && tm && `${tm.ko}에 ${pl.ko}(으)로 와 줘.`));
+  });
+  const rs = findReason(myReason);
+  box.appendChild(sheetRow("초대 거절 할 때", rs && `Sorry, but I can't. I have a ${rs.en}.`, rs && `미안하지만 못 가. 나 ${rs.ko}(이)가 있어.`));
+  const acc = findAccept(myAccept);
+  box.appendChild(sheetRow("초대 승낙 할 때", acc.en, acc.ko));
+}
+
+/* ===========================================================
+ * 👫 짝 활동 카드 (행사별 초대 문장 크게 + 친구 대답 안내)
+ * =========================================================== */
+function renderPairCards() {
+  const box = document.getElementById("pair-cards");
+  box.innerHTML = "";
+  const done = mySets.map((s, i) => [s, i]).filter(([s]) => setComplete(s));
+  if (!done.length) {
+    const p = document.createElement("p"); p.className = "practice-empty";
+    p.innerHTML = "아직 만든 행사가 없어요! <b>🎒 내가 선택한 행사</b>에서 먼저 만들어요.";
+    box.appendChild(p); return;
+  }
+  const rs = findReason(myReason), acc = findAccept(myAccept);
+  done.forEach(([s, i]) => {
+    const ev = findEvent(s.event), pl = findPlace(s.place), tm = findTime(s.time);
+    const card = document.createElement("div");
+    card.className = "pair-card tone-" + (i % 6);
+    const head = document.createElement("div"); head.className = "pair-head";
+    head.innerHTML = `<span class="card-tag tag-combo">행사 ${i + 1}</span><span class="pair-emoji">${ev.emoji}</span>`;
+    const invite = document.createElement("div"); invite.className = "pair-line me";
+    invite.innerHTML = `<div class="pair-who">🙋 나</div>`;
+    const inv = document.createElement("div"); inv.className = "pair-en"; inv.appendChild(buildWords(`Can you come to ${ev.en}?`));
+    invite.appendChild(inv);
+    const ans = document.createElement("div"); ans.className = "pair-line friend";
+    ans.innerHTML = `<div class="pair-who">🙆 친구 (승낙 ○ / 거절 ×)</div>
+      <div class="pair-choice"><span class="pair-ok">○ ${acc.en}</span><span class="pair-no">× Sorry, but I can't. I have a ___.</span></div>`;
+    const meet = document.createElement("div"); meet.className = "pair-line me";
+    meet.innerHTML = `<div class="pair-who">🙋 나 (승낙했을 때)</div>`;
+    const m = document.createElement("div"); m.className = "pair-en"; m.appendChild(buildWords(`Please come to ${pl.en} at ${tm.en}.`));
+    meet.appendChild(m);
+    const tools = document.createElement("div"); tools.className = "ptools";
+    const b1 = document.createElement("button"); b1.className = "btn small primary"; b1.textContent = "🔊 초대 듣기";
+    b1.addEventListener("click", () => speak(`Can you come to ${ev.en}?`));
+    const b2 = document.createElement("button"); b2.className = "btn small"; b2.textContent = "🔊 약속 듣기";
+    b2.addEventListener("click", () => speak(`Please come to ${pl.en} at ${tm.en}.`));
+    tools.append(b1, b2);
+    card.append(head, invite, ans, meet, tools);
+    box.appendChild(card);
+  });
+  const note = document.createElement("p"); note.className = "hint pair-note";
+  note.innerHTML = `💬 내가 초대받았을 때: 승낙 <b>${acc.en}</b> · 거절 <b>${rs ? `Sorry, but I can't. I have a ${rs.en}.` : "(거절 문장을 정해요)"}</b>`;
+  box.appendChild(note);
+}
+
+/* ===========================================================
+ * 🎤 컴퓨터와 미리 연습하기 (행사별 대화: 줄마다 말하기 + 역할극)
  * =========================================================== */
 function makeSetCard(s, idx) {
   const card = document.createElement("div");
@@ -567,7 +646,7 @@ function makeSetCard(s, idx) {
   const top = document.createElement("div");
   top.className = "card-top";
   const left = document.createElement("div"); left.className = "ptag-left";
-  const tag = document.createElement("span"); tag.className = "card-tag tag-combo"; tag.textContent = `🎒 세트 ${idx + 1}`;
+  const tag = document.createElement("span"); tag.className = "card-tag tag-combo"; tag.textContent = `🎒 행사 ${idx + 1}`;
   const title = document.createElement("span"); title.className = "pset-title"; title.textContent = `${ev.emoji} ${ev.en}`;
   left.append(tag, title);
   const modeWrap = document.createElement("div"); modeWrap.className = "mode-switch";
@@ -638,6 +717,7 @@ function makeSetCard(s, idx) {
 }
 
 function renderPractice() {
+  renderPairCards();
   const empty = document.getElementById("practice-empty");
   const list = document.getElementById("practice-list");
   list.innerHTML = "";
@@ -648,7 +728,7 @@ function renderPractice() {
   if (done.length < SET_COUNT) {
     const note = document.createElement("p");
     note.className = "practice-empty";
-    note.innerHTML = `아직 <b>${SET_COUNT - done.length}개</b> 세트가 비어 있어요. <b>🎒 내 행사 만들기</b>에서 마저 만들어 보세요.`;
+    note.innerHTML = `아직 <b>${SET_COUNT - done.length}개</b> 행사가 비어 있어요. <b>🎒 내가 선택한 행사</b>에서 마저 만들어 보세요.`;
     list.appendChild(note);
   }
 }
@@ -738,6 +818,7 @@ renderSuggestions();
 renderAnswerGrids();
 renderBuilder();
 updateSetPreview();
+renderSheetSummary();
 
 /* ---------- 탭 전환 ---------- */
 document.querySelectorAll(".tab-btn").forEach(btn => {

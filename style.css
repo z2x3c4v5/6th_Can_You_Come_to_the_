@@ -557,3 +557,32 @@ main { max-width: 980px; margin: 0 auto; padding: 0 16px 50px; }
 .mode-switch { display: flex; gap: 6px; }
 .mode-switch .cat-btn { padding: 6px 12px; font-size: 0.85rem; }
 @media (max-width: 560px) { .pcard .card-top { flex-wrap: wrap; gap: 8px; } }
+
+/* ===== 📝 워크시트에 적기 ===== */
+.sheet-table { display: flex; flex-direction: column; gap: 8px; }
+.sheet-row {
+  display: grid; grid-template-columns: 150px 1fr 40px; align-items: center; gap: 12px;
+  background: rgba(255,255,255,0.85); border: 1.5px solid rgba(139, 92, 246, 0.18);
+  border-radius: 14px; padding: 10px 14px;
+}
+.sheet-row.empty .sheet-val { color: var(--muted); font-style: italic; }
+.sheet-label { font-weight: 800; color: var(--primary-dark); font-size: 0.95rem; }
+.sheet-val .en { font-weight: 700; font-size: 1.15rem; color: var(--text); }
+.sheet-val .ko { font-size: 0.85rem; color: var(--muted); margin-top: 2px; }
+@media (max-width: 560px) { .sheet-row { grid-template-columns: 1fr 40px; } .sheet-label { grid-column: 1 / -1; } }
+
+/* ===== 👫 짝 활동 카드 ===== */
+.pair-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 900px) { .pair-cards { grid-template-columns: 1fr; } }
+.pair-card { border-radius: 22px; padding: 16px 18px; box-shadow: var(--shadow-sm); border: 1.5px solid rgba(255,255,255,0.8); background: var(--card); }
+.pair-card.tone-0 { background: #ede9fe; } .pair-card.tone-1 { background: #fff7d6; } .pair-card.tone-2 { background: #ffe7e0; }
+.pair-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.pair-emoji { font-size: 2rem; }
+.pair-line { background: rgba(255,255,255,0.85); border-radius: 14px; padding: 10px 12px; margin-top: 8px; }
+.pair-line.friend { background: #fdf2f8; }
+.pair-who { font-size: 0.8rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 4px; }
+.pair-en { font-weight: 800; font-size: 1.25rem; line-height: 1.4; color: var(--text); }
+.pair-choice { display: flex; flex-direction: column; gap: 4px; font-weight: 700; font-size: 1rem; }
+.pair-ok { color: var(--pos); } .pair-no { color: var(--neg); }
+.pair-note { grid-column: 1 / -1; margin: 4px 0 0; }
+.pair-cards .ptools { border-top: none; padding-top: 0; }

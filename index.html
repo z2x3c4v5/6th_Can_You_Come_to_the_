@@ -20,8 +20,8 @@
     <button class="tab-btn active" data-tab="suggest">🎉 초대하기</button>
     <button class="tab-btn" data-tab="answer">💬 대답하기</button>
     <button class="tab-btn" data-tab="meet">📍 약속 잡기</button>
-    <button class="tab-btn" data-tab="build">🎒 내 행사 만들기 <span id="set-count" class="tab-count">0/3</span></button>
-    <button class="tab-btn" data-tab="practice">🎤 세트 연습</button>
+    <button class="tab-btn" data-tab="build">🎒 내가 선택한 행사 <span id="set-count" class="tab-count">0/3</span></button>
+    <button class="tab-btn" data-tab="practice">🎤 연습 · 짝 활동</button>
   </nav>
 
   <div class="toolbar">
@@ -46,7 +46,7 @@
           <button class="cat-btn" data-cat="book">📘 교과서 행사</button>
           <button class="cat-btn" data-cat="fun">🎈 재미있는 행사</button>
         </div>
-        <p class="hint">난이도와 행사 종류를 고르면 <b>교과서 행사 6개</b>(생일 파티·태권도 공연·레이저 쇼·책 축제·영화 축제·요리 교실 파티)와 <b>재미있는 행사 12개</b>(케이팝 콘서트·슬라임 축제·마술 쇼·불꽃 축제 등)가 나와요. <b>my birthday party</b>처럼 <b>my</b>가 붙는 행사는 <b>the</b>를 쓰지 않아요! 단어를 누르면 뜻과 발음을 알 수 있어요. 마음에 드는 행사는 <b>🎒 내 행사 만들기</b>에서 골라 내 세트로 만들어요.</p>
+        <p class="hint">난이도와 행사 종류를 고르면 <b>교과서 행사 6개</b>(생일 파티·태권도 공연·레이저 쇼·책 축제·영화 축제·요리 교실 파티)와 <b>재미있는 행사 12개</b>(케이팝 콘서트·슬라임 축제·마술 쇼·불꽃 축제 등)가 나와요. <b>my birthday party</b>처럼 <b>my</b>가 붙는 행사는 <b>the</b>를 쓰지 않아요! 단어를 누르면 뜻과 발음을 알 수 있어요. <b>📋 워크시트 1번</b>: 여기와 <b>대답하기 · 약속 잡기</b>에서 표현을 듣고 따라 말한 뒤, 마음에 드는 행사를 <b>🎒 내가 선택한 행사</b>에서 골라요.</p>
         <div id="suggestion-grid" class="card-grid five"></div>
       </div>
     </section>
@@ -93,13 +93,13 @@
     <!-- ===== 🎒 내 행사 만들기 (3세트 + 내 대답) ===== -->
     <section id="tab-build" class="tab-panel">
       <div class="section-block">
-        <h2>🎒 내 행사 세트 만들기 <span class="count">3세트</span></h2>
-        <p class="hint">친구를 초대할 <b>내 행사 3개</b>를 만들어요. 세트마다 <b>행사 1개</b>와 약속 <b>장소·시간 1개</b>를 고르면 돼요. 만든 세트는 <b>🎤 세트 연습</b>에서 대화로 연습해요.</p>
+        <h2>🎒 내가 선택한 행사 <span class="count">3개</span></h2>
+        <p class="hint"><b>📋 워크시트 2번</b>: 친구를 초대할 <b>내가 선택한 행사 3개</b>를 만들어요. 행사마다 <b>행사 1개</b>와 약속 <b>장소·시간 1개</b>를 고르면 돼요. 다 만들면 아래 <b>📝 워크시트에 적기</b> 표를 보고 영어로 옮겨 적고, <b>🎤 연습 · 짝 활동</b>에서 말해 봐요.</p>
 
         <div class="set-tabs" id="set-tabs">
-          <button class="set-tab active" data-set="0">세트 1</button>
-          <button class="set-tab" data-set="1">세트 2</button>
-          <button class="set-tab" data-set="2">세트 3</button>
+          <button class="set-tab active" data-set="0">행사 1</button>
+          <button class="set-tab" data-set="1">행사 2</button>
+          <button class="set-tab" data-set="2">행사 3</button>
         </div>
 
         <div class="fill-box dialog-box">
@@ -131,9 +131,9 @@
           </div>
           <div class="dlg-status" id="set-status"></div>
           <div class="fill-actions">
-            <button id="set-listen" class="btn primary" disabled>🔊 세트 듣기</button>
+            <button id="set-listen" class="btn primary" disabled>🔊 대화 듣기</button>
             <button id="set-random" class="btn ghost">🎲 무작위로 채우기</button>
-            <button id="set-clear" class="btn ghost">🧹 이 세트 비우기</button>
+            <button id="set-clear" class="btn ghost">🧹 이 행사 비우기</button>
           </div>
         </div>
 
@@ -142,7 +142,7 @@
           <div id="build-events"></div>
         </div>
         <div class="build-step">
-          <h3 class="build-label">2️⃣ 약속 장소·시간 고르기 <span class="build-sub">Please come to ___ at ___.</span></h3>
+          <h3 class="build-label">2️⃣ 약속 장소와 시간 고르기 <span class="build-sub">Please come to ___ at ___.</span></h3>
           <div class="chip-group-title">📍 장소 (Where)</div>
           <div id="build-place" class="chip-row wrap"></div>
           <div class="chip-group-title">⏰ 시간 (What time)</div>
@@ -152,7 +152,7 @@
 
       <div class="section-block">
         <h2>💬 내 대답 정하기 <span class="count">승낙 1 · 거절 1</span></h2>
-        <p class="hint">친구가 초대했을 때 내가 쓸 <b>승낙 표현 1개</b>와 <b>거절 문장 1개</b>를 정해요. 세 세트 모두 이 대답으로 연습해요.</p>
+        <p class="hint">친구가 나를 초대했을 때 내가 말할 <b>승낙 표현 1개</b>와 <b>초대 거절할 때</b> 쓸 <b>거절 문장 1개</b>를 정해요. 거절 문장은 워크시트 <b>"초대 거절 할 때"</b> 칸에 적어요.</p>
         <div class="build-step">
           <div class="chip-group-title">⭕ 승낙 (Yes)</div>
           <div id="build-accept" class="chip-row wrap"></div>
@@ -160,15 +160,26 @@
           <div id="build-refuse" class="chip-row wrap"></div>
         </div>
       </div>
+
+      <div class="section-block">
+        <h2>📝 워크시트에 적기 <span class="count">2번 표</span></h2>
+        <p class="hint">워크시트 <b>2번 표</b>와 같은 순서예요. 영어 문장을 보고 그대로 옮겨 적어요. 🔊를 누르면 읽어 줘요.</p>
+        <div id="sheet-summary" class="sheet-table"></div>
+      </div>
     </section>
 
-    <!-- ===== 🎤 세트 연습 ===== -->
+    <!-- ===== 🎤 연습 · 짝 활동 ===== -->
     <section id="tab-practice" class="tab-panel">
       <div class="section-block">
-        <h2>🎤 내 행사 세트 연습</h2>
-        <p class="hint">세트마다 <b>초대 → 대답 → 약속</b> 대화를 연습해요. 줄마다 <b>🎙️ 말하기</b>로 정확도를 재고, <b>🎭 역할극</b>에서 내가 <b>A(초대하는 사람)</b> 또는 <b>B(대답하는 사람)</b>를 맡으면 컴퓨터가 상대 역할을 읽어 줘요. 친구가 <b>승낙</b>할 때와 <b>거절</b>할 때 두 가지로 연습할 수 있어요. (Chrome 권장)</p>
+        <h2>👫 짝 활동 카드 <span class="count">워크시트 3번</span></h2>
+        <p class="hint"><b>📋 워크시트 3번</b>: 짝에게 내가 선택한 행사로 초대해요. 초대받은 친구는 <b>승낙이든 거절이든 영어로 말해</b> 주고, 나는 워크시트에 친구 이름을 쓴 뒤 승낙이면 <b>○</b>, 거절이면 <b>×</b>를 표시해요. 승낙하면 약속 문장까지 말해요!</p>
+        <div id="pair-cards" class="pair-cards"></div>
+      </div>
+      <div class="section-block">
+        <h2>🎤 컴퓨터와 미리 연습하기</h2>
+        <p class="hint">짝 활동 전에 혼자 연습해요. 줄마다 <b>🎙️ 말하기</b>로 정확도를 재고, <b>🎭 역할극</b>에서 내가 <b>A(초대하는 사람)</b> 또는 <b>B(대답하는 사람)</b>를 맡으면 컴퓨터가 상대 역할을 읽어 줘요. 친구가 <b>승낙</b>할 때와 <b>거절</b>할 때 두 가지로 연습할 수 있어요. (Chrome 권장)</p>
         <p id="practice-empty" class="practice-empty">
-          아직 만든 세트가 없어요! <b>🎒 내 행사 만들기</b> 탭에서 행사와 약속 장소·시간을 골라 세트를 만들어 보세요.
+          아직 만든 행사가 없어요! <b>🎒 내가 선택한 행사</b> 탭에서 행사와 약속 장소·시간을 골라 보세요.
         </p>
         <div id="practice-list" class="practice-list"></div>
       </div>
