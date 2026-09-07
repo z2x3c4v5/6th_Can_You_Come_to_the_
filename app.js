@@ -95,7 +95,7 @@ function buildWords(sentence) {
 }
 
 /* ---------- 실사 이미지 ---------- */
-let imageMode = true; // true: 실사 사진, false: 이모지
+let imageMode = false; // false: 모든 카드를 같은 이모지 타일로 통일 (true로 바꾸면 AI 실사 사진 시도)
 function hashSeed(s) {
   let h = 0;
   for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
