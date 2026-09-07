@@ -1,4 +1,4 @@
-# Can you come to the ___? · 친구 초대하기
+# Can you come to the ___? · 내가 선택한 행사에 친구 초대하기
 
 6학년 영어 **초대하고 대답하기** 단원 학습용 웹앱입니다.
 교과서의 행사 표현(`Can you come to my birthday party?` 등)뿐 아니라 **초등학생이 좋아할 행사**로
